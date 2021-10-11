@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <title>Template for warehouse stock</title>
+  </head>
+  <body>
+    <main>
+      <h1>Warehouses</h1>
+      <section>
+        <div>
+          <h2>Warehouse on Bond Street</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price per Unit</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>iPhone 12</td>
+              <td>86</td>
+              <td>$1,000</td>
+              <td>$86,000</td>
+            </tr>
+            <tr>
+              <td>iPhone 12 Pro</td>
+              <td>43</td>
+              <td>$1,200</td>
+              <td>$51,600</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">Total</td>
+              <td>$189,200</td>
+            </tr>
+          </tfoot>
+        </table>
+        <form>
+          <div class="new-product-input">
+            <label for="product-name-input">Product:</label>
+            <input id="product-name-input" type="text" />
+          </div>
+          <div class="new-product-input">
+            <label for="product-name-input">Quantity:</label>
+            <input id="product-name-input" type="number" />
+          </div>
+          <div class="new-product-input">
+            <label for="product-name-input">Price:</label>
+            <input id="product-name-input" type="number" />
+          </div>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

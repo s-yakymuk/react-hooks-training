@@ -1,0 +1,52 @@
+section {
+  background-color: #f9f9f9;
+  border: 1px solid #c9c9c9;
+  border-radius: 16px;
+  width: 1024px;
+  padding: 0 32px 32px;
+  margin-bottom: 24px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  padding: 8px 16px;
+  border: 1px solid #c9c9c9;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+
+tfoot td:first-child {
+  text-align: right;
+}
+
+form {
+  display: flex;
+  margin-top: 24px;
+}
+
+.new-product-input {
+  margin-right: 24px;
+}
+
+.new-product-input label {
+  margin-right: 8px;
+}
+
+.new-product-error {
+  margin-top: 8px;
+  font-size: 10px;
+  color: red;
+}
+
+.warehouse-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
