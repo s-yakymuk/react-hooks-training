@@ -3,30 +3,28 @@ import { v4 as uniqueId } from "uuid";
 
 import './Warehouse.css';
 
-const DEFAULT_NEW_PRODUCT = {
-  name: "",
-  quantity: "",
-  price: ""
-};
-
 function Warehouse(props) {
   // logic: hooks, props calculation
   const { name, products, setProducts, isTableOpen, setIsTableOpen } = props;
   const inputRef = useRef();
-  const [newProduct, setNewProduct] = useState(DEFAULT_NEW_PRODUCT);
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productQuantity, setProductQuantity] = useState("");
   const [validationError, setValidationError] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     // validation
-    if (newProduct.name && newProduct.quantity && newProduct.price) {
+    if (productName && productQuantity && productPrice) {
       setProducts([...products, {
         id: uniqueId(),
-        name: newProduct.name,
-        quantity: newProduct.quantity,
-        price: newProduct.price,
+        name: productName,
+        quantity: productQuantity,
+        price: productPrice,
       }]);
-      setNewProduct(DEFAULT_NEW_PRODUCT);
+      setProductName("");
+      setProductPrice("");
+      setProductQuantity("");
       setValidationError("");
     } else {
       setValidationError("Enter data in all fields!");
@@ -68,24 +66,34 @@ function Warehouse(props) {
       </table>
       <form onSubmit={onSubmit}>
         <div className="new-product-input">
-          <label htmlFor="product-name-input">Product:</label>
-          <input ref={inputRef} id="product-name-input" type="text" value={newProduct.name}
-            onChange={e => setNewProduct(prev => ({ ...prev, name: e.target.value }))}
+          <label htmlFor={`${name}-product-name-input`}>Product:</label>
+          <input
+            type="text"
+            ref={inputRef}
+            value={productName}
+            id={`${name}-product-name-input`}
+            onChange={e => setProductName(e.target.value)}
           />
         </div>
         <div className="new-product-input">
-          <label htmlFor="product-name-input">Quantity:</label>
-          <input id="product-name-input" type="number" value={newProduct.quantity}
-            onChange={e => setNewProduct(prev => ({ ...prev, quantity: e.target.value }))}
+          <label htmlFor={`${name}-product-quantity-input`}>Quantity:</label>
+          <input
+            type="number"
+            value={productQuantity}
+            id={`${name}-product-quantity-input`}
+            onChange={e => setProductQuantity(e.target.value)}
           />
         </div>
         <div className="new-product-input">
-          <label htmlFor="product-name-input">Price:</label>
-          <input id="product-name-input" type="number" value={newProduct.price}
-            onChange={e => setNewProduct(prev => ({ ...prev, price: e.target.value }))}
+          <label htmlFor={`${name}-product-price-input`}>Price:</label>
+          <input
+            type="number"
+            value={productPrice}
+            id={`${name}-product-price-input`}
+            onChange={e => setProductPrice(e.target.value)}
           />
         </div>
-        <button type="submit">Add</button>
+        <button id={`${name}-submit-button`} type="submit">Add</button>
       </form>
       {!!validationError && <div className="new-product-error">{validationError}</div>}
     </>
@@ -108,8 +116,12 @@ function Warehouse(props) {
     <section>
       <div className="warehouse-header">
         <h2>{name}</h2>
-        <button type="button" onClick={() => setIsTableOpen(!isTableOpen)}>
-          {isTableOpen ? "🠑" : "🠓"}
+        <button
+          type="button"
+          onClick={() => setIsTableOpen(!isTableOpen)}
+          aria-label={isTableOpen ? "Collapse Warehouse" : "Expand Warehouse"}
+        >
+          {isTableOpen ? "⇧" : "⇩"}
         </button>
       </div>
       {isTableOpen ? tableContent : null}
